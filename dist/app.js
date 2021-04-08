@@ -9,12 +9,13 @@ var socket_io_1 = require("socket.io");
 var app = express_1.default();
 var server = http_1.default.createServer(app);
 var io = new socket_io_1.Server(server);
+var PORT = process.env.PORT || 3009;
 app.get('/', function (req, res) {
     res.send('Hello is server');
 });
 io.on('connection', function (socket) {
     console.log('a user connected');
 });
-server.listen(3009, function () {
+server.listen(PORT, function () {
     console.log('listening on *:3000');
 });

@@ -5,9 +5,15 @@ const cors = require('cors');
 const app = express();
 
 
-const server = http.createServer(app.use(cors()));
-const io = new Server(server)
+const server = http.createServer(app);
+const io = new Server(server, );
+// {
+//     cors: {
+//         origin: '*',
+//     }
+// }
 
+io.use(cors())
 const PORT = process.env.PORT || 3009
 
 app.get('/', (req, res) => {

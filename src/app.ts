@@ -4,8 +4,8 @@ import {Server }  from 'socket.io';
 const cors = require('cors');
 const app = express();
 
-app.use(cors())
-const server = http.createServer(app);
+
+const server = http.createServer(app.use(cors()));
 const io = new Server(server)
 
 const PORT = process.env.PORT || 3009

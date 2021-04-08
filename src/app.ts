@@ -18,7 +18,7 @@ const io = new Server(server, {
 const PORT = process.env.PORT || 3009
 
 app.get('/', (req, res) => {
-    res.send('Hello is server');
+    res.send('Hello is server2');
 });
 
 io.on('connection', (socket) => {

@@ -40,7 +40,7 @@ io.on('connection', (socket) => {
             user: {id: user.id, name: user.name}
         }
         messages.push(mesItem)
-        socket.emit('new-message-sent', mesItem)
+        io.emit('new-message-sent', mesItem)
     })
     socket.emit('messages-init', messages)
 

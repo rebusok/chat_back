@@ -23,11 +23,15 @@ app.get('/', (req, res) => {
 
 io.on('connection', (socket) => {
     users.set(socket, {id: new Date().getTime().toString(), name: 'Anonym'})
+    const initUser = users.get(socket)
     socket.on('client-name-sent', (name) => {
         if (typeof name !== 'string') return
         const user = users.get(socket)
         user.name = name
 
+    })
+    socket.on('client-typed', () => {
+        io.emit('user-typing', users.get(socket))
     })
     socket.on('disconnect', () => {
         users.delete(socket)
@@ -43,6 +47,7 @@ io.on('connection', (socket) => {
         io.emit('new-message-sent', mesItem)
     })
     socket.emit('messages-init', messages)
+    socket.emit('set_user', initUser)
 
     console.log('a user connected');
 });

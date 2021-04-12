@@ -31,7 +31,7 @@ io.on('connection', (socket) => {
 
     })
     socket.on('client-typed', () => {
-        io.emit('user-typing', users.get(socket))
+        socket.broadcast.emit('user-typing', users.get(socket))
     })
     socket.on('disconnect', () => {
         users.delete(socket)
